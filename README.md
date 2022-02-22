@@ -10,7 +10,7 @@ Clone the repo and run bundle install:
 $ bundle install
 ```
 
-Create a new `.env` based on the `.env.example` and replace variables:
+Create a new `.env` based on the `.env.example` and replace the variables:
 ```
 REALM_API_URL=https://sampleapiurl.com
 REALM_API_DEV_ID=1234
