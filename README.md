@@ -5,24 +5,21 @@
 This is a simple CLI tool for fetching data from the Realm Royale API.
 
 ## How to use:
-Clone the repo and run bundle install:
+### Clone the repo and run bundle install:
 ```bash
 $ bundle install
 ```
 
-Create a new `.env` based on the `.env.example` and replace the variables:
+### Create a new `.env` based on the `.env.example`:
 ```
 REALM_API_URL=https://sampleapiurl.com
 REALM_API_DEV_ID=1234
 REALM_API_KEY=ABC1234DEF1234G1234H1234
-```
-
-Add a list of player names and their steam ids you want to query to your `.env`:
-```
 VALID_STEAM_IDS={ "sample_username": 123456789 }
 ```
+For more information on how to obtain a API KEY and a DEV ID please see: https://github.com/apugh/realm-api-docs/wiki
 
-Run the script:
+### Run the script:
 ```bash
 $ ruby main.rb -p sample_username
 ```
