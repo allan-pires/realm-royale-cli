@@ -3,6 +3,8 @@ require_relative('session')
 module RealmRoyale
   module Api
     class Player
+      API_STEAM_IDS = 'VALID_STEAM_IDS'
+
       def self.fetch_all_stats
         players = valid_steam_ids.keys
         status = {}
