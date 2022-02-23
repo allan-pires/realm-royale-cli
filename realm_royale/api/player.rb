@@ -7,6 +7,7 @@ module RealmRoyale
       API_STEAM_IDS = 'VALID_STEAM_IDS'
 
       def self.fetch_all_stats
+        api_session
         players = valid_steam_ids.keys
         status = {}
         
@@ -41,14 +42,18 @@ module RealmRoyale
       private
 
       def self.fetch_info(player_steam_id)
-        response = RealmRoyale::Api::Session.make_request('getplayer', "/#{player_steam_id}/steam")
+        response = api_session.make_request('getplayer', "/#{player_steam_id}/steam")
         JSON.parse(response.body)
       end
 
       def self.fetch_aggregated_stats(player_id)
-        response = RealmRoyale::Api::Session.make_request('getplayerstats', "/#{player_id}")
+        response = api_session.make_request('getplayerstats', "/#{player_id}")
         json_response = JSON.parse(response.body)&.transform_keys(&:to_sym)
         json_response[:aggregate_stats]&.transform_keys(&:to_sym)
+      end
+
+      def self.api_session
+        @api_session ||= RealmRoyale::Api::Session.new
       end
     end
   end
