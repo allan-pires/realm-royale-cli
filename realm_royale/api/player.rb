@@ -1,3 +1,4 @@
+require 'thread'
 require_relative('session')
 
 module RealmRoyale
@@ -8,11 +9,13 @@ module RealmRoyale
       def self.fetch_all_stats
         players = valid_steam_ids.keys
         status = {}
-
+        
+        threads = []
         players.each do |player|
-          status[player] = fetch_stats(player)
+          threads << Thread.new { status[player] = fetch_stats(player) }
         end
-
+        threads.each(&:join)
+        
         status
       end
 
